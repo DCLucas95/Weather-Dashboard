@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!--Main Title of Page-->
+    <h1>Weather Dashboard</h1>
+
+
+    <div class="container">
+        <div class="col-3">
+            <form id="weather-search">
+                <div class="form-group">
+                    <label>City: </label>
+                    <input type="text" class="form-control" id="city" placeholder="City to search">
+                    <button type="submit" class="btn btn-dark">Search</button>
+
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <!--Weather Return for Current Search-->
+        <div class="col-9">
+            <div class="row mr-0">
+                <div class="col-12">
+                    <p id="city-name">placeholder city name</p>
+                </div>
+
+                <div class="col-12">
+                    <p id="city-weather">placeholder weather</p>
+                </div>
+
+                <div class="col-12">
+                    <p id="city-temp">placeholder temp</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!--5 Day Forecast-->
+        <div class="row">
+            <div class="col-8">
+                <h3>5-Day Forecast</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">placeholder</div>
+            <div class="col-2">placeholder</div>
+            <div class="col-2">placeholder</div>
+            <div class="col-2">placeholder</div>
+            <div class="col-2">placeholder</div>
+        </div>
+
+        <!--Js links-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="./script.js"></script>
+</body>
+
+</html>
