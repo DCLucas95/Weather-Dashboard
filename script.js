@@ -84,9 +84,6 @@ return Math.floor (kelv2deg - 273.15)
   }
   */
 
-
-
-
   //Save searches to local storage
   var pastSearches = []
   function saveHistory(newCity){
@@ -94,6 +91,7 @@ return Math.floor (kelv2deg - 273.15)
     localStorage.setItem("searched", JSON.stringify(pastSearches))
   }
 
+  //Read local storage
   function readHistory(){
     var storedString = localStorage.getItem("searched")
     
@@ -103,6 +101,7 @@ return Math.floor (kelv2deg - 273.15)
     }
   }
 
+  //show previous searches
   function displayHistory(){
     $("#previous-searches").empty()
     for (let i = 0; i < pastSearches.length; i++) {
@@ -111,6 +110,7 @@ return Math.floor (kelv2deg - 273.15)
     }
   }
 
+  //run previous written functions
   readHistory()
   displayHistory()
 
