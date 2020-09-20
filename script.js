@@ -94,10 +94,10 @@ function readHistory() {
 
 //show previous searches
 function displayHistory() {
-  $("#previous-searches").empty()
+  $(".previous-searches").empty()
   for (let i = 0; i < pastSearches.length; i++) {
     var pastSearch = pastSearches[i];
-    $("#previous-searches").append(pastSearch + ", ")
+    $(".previous-searches").append(pastSearch)
   }
 }
 
