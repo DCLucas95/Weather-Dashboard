@@ -17,24 +17,22 @@ $("#search").on("click", function (event) {
     $("#city-temp").text("Temperature: " + response.main.temp + " degrees celsius")
     $("#city-humidity").text("Humidity: " + response.main.humidity + "%")
     $("#city-wind").text("Wind Speed: " + response.wind.speed)
-  });
 
 
+    //ajax call for UV
+    var latitude = response.coord.lat
+    var longitude = response.coord.lon
+    var queryURLforUV = "http://api.openweathermap.org/data/2.5/uvi?&appid=b97ce200929c2749eca4924f16dc7e98&lat=" + latitude + "&lon=" + longitude;
 
-  //ajax call for UV
-  var queryURLforUV = "http://api.openweathermap.org/data/2.5/uvi?appid=&appid=b97ce200929c2749eca4924f16dc7e98&lat=" + latitude + "&lon=" + longitude;
-  var latitude = response.coord.lat
-  var longitude = response.coord.lon
+    console.log(queryURLforUV)
 
-  console.log(latitude)
-  console.log(longitude)
-
-  $.ajax({
-    url: queryURLforUV,
-    method: "GET"
-  }).then(function (UVresponse) {
-    console.log(UVresponse);
-    $("#city-uv").text("UV Index: " /*this is where i will put the UV*/)
+    $.ajax({
+      url: queryURLforUV,
+      method: "GET"
+    }).then(function (UVresponse) {
+      console.log(UVresponse);
+      $("#city-uv").text("UV Index: " + UVresponse.value)
+    });
   });
 
 });
