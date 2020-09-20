@@ -12,19 +12,17 @@ $("#search").on("click", function (event) {
     method: "GET"
   }).then(function (response) {
     console.log(response);
-    $("#city-name").text(response.name)
+    $("#city-name").text("Today: " + response.name)
     $("#city-weather").text("Weather: " + response.weather[0].main)
-    $("#city-temp").text("Temperature: " + response.main.temp + " degrees celsius")
+    $("#city-temp").text("Temperature: " + (response.main.temp) + " degrees celsius")
     $("#city-humidity").text("Humidity: " + response.main.humidity + "%")
-    $("#city-wind").text("Wind Speed: " + response.wind.speed)
+    $("#city-wind").text("Wind Speed: " + response.wind.speed + "MPH")
 
 
     //ajax call for UV
     var latitude = response.coord.lat
     var longitude = response.coord.lon
     var queryURLforUV = "http://api.openweathermap.org/data/2.5/uvi?&appid=b97ce200929c2749eca4924f16dc7e98&lat=" + latitude + "&lon=" + longitude;
-
-    console.log(queryURLforUV)
 
     $.ajax({
       url: queryURLforUV,
@@ -33,15 +31,66 @@ $("#search").on("click", function (event) {
       console.log(UVresponse);
       $("#city-uv").text("UV Index: " + UVresponse.value)
     });
+
+    //ajax call for 5 day forecast
+    var queryURL5days = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=b97ce200929c2749eca4924f16dc7e98";
+    $.ajax({
+      url: queryURL5days,
+      method: "GET"
+    }).then(function (fivedays) {
+      console.log(fivedays);
+
+      //5 day forecast dates
+
+
+
+      //5 day forecast weather
+      $(".5Day1-weather").text("Weather: " + fivedays.list[10].weather[0].main)
+      $(".5Day2-weather").text("Weather: " + fivedays.list[18].weather[0].main)
+      $(".5Day3-weather").text("Weather: " + fivedays.list[26].weather[0].main)
+      $(".5Day4-weather").text("Weather: " + fivedays.list[34].weather[0].main)
+      $(".5Day5-weather").text("Weather: " + fivedays.list[39].weather[0].main)
+
+      //5 day forecast temperature
+      $(".5Day1-temp").text("Temperature: " + fivedays.list[10].main.temp + " degrees celsius")
+      $(".5Day2-temp").text("Temperature: " + fivedays.list[18].main.temp + " degrees celsius")
+      $(".5Day3-temp").text("Temperature: " + fivedays.list[26].main.temp + " degrees celsius")
+      $(".5Day4-temp").text("Temperature: " + fivedays.list[34].main.temp + " degrees celsius")
+      $(".5Day5-temp").text("Temperature: " + fivedays.list[39].main.temp + " degrees celsius")
+
+      //5 day forecast humidity
+      $(".5Day1-humidity").text("Humidity: " + fivedays.list[10].main.humidity + " %")
+      $(".5Day2-humidity").text("Humidity: " + fivedays.list[18].main.humidity + " %")
+      $(".5Day3-humidity").text("Humidity: " + fivedays.list[26].main.humidity + " %")
+      $(".5Day4-humidity").text("Humidity: " + fivedays.list[34].main.humidity + " %")
+      $(".5Day5-humidity").text("Humidity: " + fivedays.list[39].main.humidity + " %")
+
+     
+    });
+
   });
 
+  /*
+  //UV warnings
+    if (UVresponse > 3){
+      ("#city-uv").addClass("uvLevel")
+  }
+  */
+
+  //Save searches to local storage
+  localStorage.setItem("searched", citySearch)
+  /*
+  //retrieve searches from local storage
+  var pastSearch = localStorage.getItem(citySearch)
+  $("#previous-searches").innerHTML =  localStorage.getItem (pastSearch)//doesnt work!!!
+  */
 });
 
 //button to clear local storage
 $('.clearSearches').on('click', clearLocalStorage);
 
-function clearLocalStorage(){
-    location.reload()
-    window.localStorage.clear();
-    alert("Searches have been cleared!")
+function clearLocalStorage() {
+  location.reload()
+  window.localStorage.clear();
+  alert("Searches have been cleared!")
 }
