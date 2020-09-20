@@ -8,3 +8,11 @@ h1 {
     color: white;
     padding: 1%;
 }
+
+.btn {
+    margin-top: 5%;
+}
+
+.clearSearches {
+    background-color: #ff6961;
+}

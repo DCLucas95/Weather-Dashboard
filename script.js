@@ -36,3 +36,12 @@ $("#search").on("click", function (event) {
   });
 
 });
+
+//button to clear local storage
+$('.clearSearches').on('click', clearLocalStorage);
+
+function clearLocalStorage(){
+    location.reload()
+    window.localStorage.clear();
+    alert("Searches have been cleared!")
+}
