@@ -16,7 +16,7 @@ $("#search").on("click", function (event) {
     $("#city-weather").text("Weather: " + response.weather[0].main)
     $("#city-temp").text("Temperature: " + converter(response.main.temp) + " ℃")
     $("#city-humidity").text("Humidity: " + response.main.humidity + "%")
-    $("#city-wind").text("Wind Speed: " + response.wind.speed + "MPH")
+    $("#city-wind").text("Wind Speed: " + response.wind.speed + " m/s")
 
 
     //ajax call for UV
