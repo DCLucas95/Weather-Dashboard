@@ -22,7 +22,7 @@ $("#search").on("click", function (event) {
     //ajax call for UV
     var latitude = response.coord.lat
     var longitude = response.coord.lon
-    var queryURLforUV = "http://api.openweathermap.org/data/2.5/uvi?&appid=b97ce200929c2749eca4924f16dc7e98&lat=" + latitude + "&lon=" + longitude;
+    var queryURLforUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=b97ce200929c2749eca4924f16dc7e98&lat=" + latitude + "&lon=" + longitude;
 
     $.ajax({
       url: queryURLforUV,
@@ -33,7 +33,7 @@ $("#search").on("click", function (event) {
     });
 
     //ajax call for 5 day forecast
-    var queryURL5days = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=b97ce200929c2749eca4924f16dc7e98";
+    var queryURL5days = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=b97ce200929c2749eca4924f16dc7e98";
     $.ajax({
       url: queryURL5days,
       method: "GET"
