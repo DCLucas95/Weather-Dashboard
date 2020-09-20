@@ -5,7 +5,7 @@ $("#search").on("click", function (event) {
   var citySearch = $("#citySearched").val()
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=b97ce200929c2749eca4924f16dc7e98";
   event.preventDefault();
-  
+
   //ajax call
   $.ajax({
     url: queryURL,
@@ -64,55 +64,46 @@ $("#search").on("click", function (event) {
       $(".5Day3-humidity").text("Humidity: " + fivedays.list[26].main.humidity + " %")
       $(".5Day4-humidity").text("Humidity: " + fivedays.list[34].main.humidity + " %")
       $(".5Day5-humidity").text("Humidity: " + fivedays.list[39].main.humidity + " %")
-
-
     });
-
   });
-saveHistory(citySearch)
-displayHistory()
+
+  saveHistory(citySearch)
+  displayHistory()
 });
 
-function converter (kelv2deg) {
-return Math.floor (kelv2deg - 273.15) 
+function converter(kelv2deg) {
+  return Math.floor(kelv2deg - 273.15)
 }
 
- /*
-  //UV warnings
-    if (UVresponse > 3){
-      ("#city-uv").addClass("uvLevel")
-  }
-  */
+//Save searches to local storage
+var pastSearches = []
+function saveHistory(newCity) {
+  pastSearches.push(newCity)
+  localStorage.setItem("searched", JSON.stringify(pastSearches))
+}
 
-  //Save searches to local storage
-  var pastSearches = []
-  function saveHistory(newCity){
-    pastSearches.push(newCity) 
-    localStorage.setItem("searched", JSON.stringify(pastSearches))
-  }
+//Read local storage
+function readHistory() {
+  var storedString = localStorage.getItem("searched")
 
-  //Read local storage
-  function readHistory(){
-    var storedString = localStorage.getItem("searched")
-    
-    if (storedString) {
-      var storedArray = JSON.parse(storedString)
-      pastSearches = storedArray
-    }
+  if (storedString) {
+    var storedArray = JSON.parse(storedString)
+    pastSearches = storedArray
   }
+}
 
-  //show previous searches
-  function displayHistory(){
-    $("#previous-searches").empty()
-    for (let i = 0; i < pastSearches.length; i++) {
-      var pastSearch = pastSearches [i];
-      $("#previous-searches").append( pastSearch + ", ")
-    }
+//show previous searches
+function displayHistory() {
+  $("#previous-searches").empty()
+  for (let i = 0; i < pastSearches.length; i++) {
+    var pastSearch = pastSearches[i];
+    $("#previous-searches").append(pastSearch + ", ")
   }
+}
 
-  //run previous written functions
-  readHistory()
-  displayHistory()
+//run previous written functions
+readHistory()
+displayHistory()
 
 //button to clear local storage
 $('.clearSearches').on('click', clearLocalStorage);
@@ -122,3 +113,10 @@ function clearLocalStorage() {
   window.localStorage.clear();
   alert("Searches have been cleared!")
 }
+
+/*
+ //UV warnings
+   if (UVresponse > 3){
+     ("#city-uv").addClass("uvLevel")
+ }
+ */
