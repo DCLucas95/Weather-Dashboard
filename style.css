@@ -22,3 +22,30 @@ h1 {
     background-color: dodgerblue;
     color: white;
 }
+
+/* UV Warning Levels */
+.uvLow {
+    background-color:green;
+    color: white;
+}
+
+.uvMedium {
+    background-color:yellow;
+    color: white;
+}
+
+
+.uvHigh {
+    background-color:orange;
+    color: white;
+}
+
+.uvVeryHigh {
+    background-color:red;
+    color: white;
+}
+
+.uvExtreme {
+    background-color:purple;
+    color: white;
+}
