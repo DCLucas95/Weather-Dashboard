@@ -33,37 +33,17 @@ $("#search").on("click", function (event) {
     }).then(function (UVresponse) {
       console.log(UVresponse);
       $("#city-uv").text("UV Index: " + UVresponse.value)
-      /*
-            //UV warnings DOES NOT WORK
-            UVWarning()
-            function UVWarning() {
-              var UVDanger = parseInt(UVresponse.value)
-              console.log(UVDanger)
-              if (UVDanger <= 2) {
-                ("#city-uv").addClass("uvLow")
-                  ("#city-uv").text("UV Index: " + UVresponse.value + "UV level Low")
-              }
-              else if (UVDanger <= 5) {
-                ("#city-uv").addClass("uvMedium")
-                  ("#city-uv").text("UV Index: " + UVresponse.value + "UV level Medium")
-              }
-      
-              else if (UVDanger <= 7) {
-                ("#city-uv").addClass("uvHigh")
-                  ("#city-uv").text("UV Index: " + UVresponse.value + "UV level High")
-              }
-      
-              else if (UVDanger <= 10) {
-                ("#city-uv").addClass("uvVeryHigh")
-                  ("#city-uv").text("UV Index: " + UVresponse.value + "UV level High")
-              }
-      
-              else if (UVDanger < 10) {
-                ("#city-uv").addClass("uvExtreme")
-                  ("#city-uv").text("UV Index: " + UVresponse.value + "UV level Extremly High")
-              }
-            }
-      */
+      var uvDanger = $("#city-uv")
+      if (UVresponse.value < 3) {
+        uvDanger.addClass("uvLow");
+      }
+      else if (UVresponse.value < 5) {
+        uvDanger.addClass("uvMedium");
+      }
+      else {
+        uvDanger.addClass("uvHigh");
+      }
+
     });
 
     //ajax call for 5 day forecast
