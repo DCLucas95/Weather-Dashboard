@@ -116,7 +116,7 @@ function displayHistory() {
   $(".previous-searches").empty()
   for (let i = 0; i < pastSearches.length; i++) {
     var pastSearch = pastSearches[i];
-    $(".previous-searches").append(pastSearch)
+    $(".previous-searches").prepend( "<button>" + pastSearch + "</button>")
   }
 }
 
